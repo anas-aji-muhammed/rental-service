@@ -17,7 +17,17 @@ dependencies {
 	implementation 'com.diffplug.spotless:spotless-plugin-gradle:6.4.2'
 
 }
+compileJava.dependsOn 'spotlessApply'
 
+spotless {
+	java{
+		def src= 'src/main/java'
+		googleJavaFormat('1.7').aosp()
+		paddedCell()
+		removeUnusedImports()
+	}
+
+}
 tasks.named('test') {
 	useJUnitPlatform()
 }
