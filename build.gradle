@@ -1,12 +1,15 @@
 plugins {
 	id 'org.springframework.boot' version '2.6.6'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+//	id "com.diffplug.spotless" version "6.4.2"
+	id "com.diffplug.gradle.spotless" version "4.0.1"
 	id 'java'
 }
 
 group = 'com.seeroo'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
+
 repositories {
 	mavenCentral()
 }
@@ -14,22 +17,23 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	implementation 'com.diffplug.spotless:spotless-plugin-gradle:6.4.2'
-
 }
 compileJava.dependsOn 'spotlessApply'
+
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
 
 spotless {
 	java{
 		def src= 'src/main/java'
+//		target = "src/main/java/**/*.java"
 		googleJavaFormat('1.7').aosp()
-		paddedCell()
 		removeUnusedImports()
+
 	}
 
-}
-tasks.named('test') {
-	useJUnitPlatform()
 }
 
 
