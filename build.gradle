@@ -1,6 +1,8 @@
 plugins {
 	id 'org.springframework.boot' version '2.6.6'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+//	id "com.diffplug.spotless" version "6.4.2"
+	id "com.diffplug.gradle.spotless" version "4.0.1"
 	id 'java'
 }
 
@@ -16,7 +18,22 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
+compileJava.dependsOn 'spotlessApply'
+
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+spotless {
+	java{
+		def src= 'src/main/java'
+//		target = "src/main/java/**/*.java"
+		googleJavaFormat('1.7').aosp()
+		removeUnusedImports()
+
+	}
+
+}
+
+
