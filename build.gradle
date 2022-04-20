@@ -27,6 +27,7 @@ tasks.named('test') {
 spotless {
 	java{
 		def src= 'src/main/java'
+		paddedCell()
 		googleJavaFormat('1.7').aosp()
 		removeUnusedImports()
 

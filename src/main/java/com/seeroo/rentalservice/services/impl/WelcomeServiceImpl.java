@@ -12,9 +12,9 @@ public class WelcomeServiceImpl implements WelcomeService {
     @Override
     public String getWelcomeMessageBasedOnCountry(UserDetailsDTO userDetailsDTO) {
         String welcomeMessage = "";
-        if (userDetailsDTO.getLocation().equals(cIndia)) {
+        if (cIndia.equals(userDetailsDTO.getLocation())) {
             welcomeMessage = "Namaste!!! " + userDetailsDTO.getName() + " Welcome to java. ";
-            if (userDetailsDTO.getCompany().equals(myCompany)) {
+            if (myCompany.equals(userDetailsDTO.getCompany())) {
                 welcomeMessage = welcomeMessage + myCompany + " is Awesome.";
             }
         } else {
