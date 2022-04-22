@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class WelcomeServiceImpl implements WelcomeService {
     static String cIndia = "India";
     static String myCompany = "Seeroo";
-    List<String> countries = new ArrayList<String>();
+    private static final List<String> countries = new ArrayList<String>();
 
     public WelcomeServiceImpl() {
         getCountries();
